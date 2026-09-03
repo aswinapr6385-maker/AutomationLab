@@ -1,0 +1,14 @@
+target/
+test-output/
+applogin.json
+
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+.DS_Store
+*.log
+
+playwright-report/
+test-results/
