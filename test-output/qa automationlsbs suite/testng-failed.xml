@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [qa automationlsbs suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="qaautomationlabs testregression(failed)">
+    <classes>
+      <class name="com.qa.qaautomationlab.test.Addtocart_test">
+        <methods>
+          <include name="addtocart"/>
+          <include name="teardown"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- com.qa.qaautomationlab.test.Addtocart_test -->
+      <class name="com.qa.qaautomationlab.test.login_Test">
+        <methods>
+          <include name="doinvalidlogin" invocation-numbers="0 1 2 3"/>
+          <include name="teardown"/>
+          <include name="dolvalidlogin" invocation-numbers="0"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- com.qa.qaautomationlab.test.login_Test -->
+    </classes>
+  </test> <!-- qaautomationlabs testregression(failed) -->
+</suite> <!-- Failed suite [qa automationlsbs suite] -->
