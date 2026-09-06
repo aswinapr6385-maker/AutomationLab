@@ -3,7 +3,9 @@ package com.qa.qaautomationlabs.base;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 
 import com.microsoft.playwright.Page;
@@ -19,7 +21,7 @@ public class Base_test {
 	public Addtocart_page ap;
 	
 	
-	@BeforeTest
+	@BeforeMethod
 	public void setup() throws IOException {
 		 pf = new Playwight_factory();
 		 
@@ -35,7 +37,7 @@ public class Base_test {
 		 
 	}
 	
-	@AfterTest
+	@AfterMethod
 	public void teardown() {
 		page.context().browser().close();
 	}

@@ -1,8 +1,10 @@
 package com.qa.qaautomationlabs.base;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Properties;
 
+import com.google.common.io.Files;
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserContext;
 import com.microsoft.playwright.BrowserType;
@@ -14,7 +16,7 @@ public class Playwight_factory {
 	Playwright playwight;
 	Browser browser;
 	BrowserContext bc;
-	Page page; 
+	static Page page; 
 	public Page initbrowserWithAuth(Properties prop){
 		String browsername = prop.getProperty("browser").trim();
 		System.out.println("browser name is :"+browsername);
@@ -62,6 +64,88 @@ public class Playwight_factory {
 		        ));
 		return page;
 	}
+	public static String takeScreenshot(
+            String testName,
+            int attempt) {
+
+        try {
+
+            String screenshotFolder =
+                    "./test-output/screenshots/";
+
+
+            // Create folder if it doesn't exist
+            Path folderPath =
+                    Paths.get(screenshotFolder);
+
+            if (!folderPath.toFile().exists()) {
+
+                folderPath.toFile().mkdirs();
+            }
+
+
+            // Clean test name
+            String cleanTestName =
+                    testName.replaceAll(
+                            "[^a-zA-Z0-9_-]",
+                            "_"
+                    );
+
+
+            String fileName =
+                    cleanTestName
+                    + "_attempt_"
+                    + attempt
+                    + ".png";
+
+
+            String screenshotPath =
+                    screenshotFolder
+                    + fileName;
+
+
+            if (page == null) {
+
+                System.out.println(
+                        "Page is null. "
+                        + "Screenshot cannot be taken."
+                );
+
+                return null;
+            }
+
+
+            page.screenshot(
+                    new Page.ScreenshotOptions()
+                            .setPath(
+                                    Paths.get(
+                                            screenshotPath
+                                    )
+                            )
+                            .setFullPage(true)
+            );
+
+
+            System.out.println(
+                    "Screenshot saved: "
+                    + screenshotPath
+            );
+
+
+            return screenshotPath;
+
+
+        } catch (Exception e) {
+
+            System.out.println(
+                    "Failed to take screenshot: "
+                    + e.getMessage()
+            );
+
+            return null;
+        }
+    }
+	
 	
 
 }

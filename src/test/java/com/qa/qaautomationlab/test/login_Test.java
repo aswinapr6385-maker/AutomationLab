@@ -32,7 +32,7 @@ public class login_Test  extends Base_test {
 	public void loginurl() {
 		String url = lp.gethomepageuturl();
 		lp = new login_page(page);
-		Assert.assertEquals(url, "https://shop.qaautomationlabs.com/shop.php");
+		Assert.assertEquals(url, "https://shop.qaautomationlabs.com/");
 	}
 	@DataProvider
 	public Object [][] getvalidcreds(){

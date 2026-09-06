@@ -20,4 +20,4 @@ public class Addtocart_test extends Base_test_addtocart{
 
 	    Assert.assertEquals(actualProduct, " A Line Frock");
 	}
-}
+} 

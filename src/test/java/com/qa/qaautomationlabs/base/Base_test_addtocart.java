@@ -3,7 +3,9 @@ package com.qa.qaautomationlabs.base;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 
 import com.microsoft.playwright.Page;
@@ -18,7 +20,7 @@ public class Base_test_addtocart {
 	public Config_File cf;
 	public Addtocart_page ap;
 	public Loginpage_factory lf;
-	@BeforeTest
+	@BeforeMethod
 	public void cart_setup() throws IOException { 
 	
 	 lf = new Loginpage_factory();
@@ -35,7 +37,7 @@ public class Base_test_addtocart {
 		
 		
 	}
-	@AfterTest
+	@AfterMethod
 	public void teardown() {
 		page.context().browser().close();
 	}
