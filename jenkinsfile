@@ -36,19 +36,18 @@ pipeline {
         }
 
         stage('Publish Extent Report') {
-            steps {
-                publishHTML([
-                    allowMissing: true,
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true,
-                    reportDir: 'build',
-                    reportFiles: 'TestExecutionReport.html',
-                    reportName: 'HTML Extent Report',
-                    reportTitles: 'Playwright Automation Report'
-                ])
-            }
-        }
+    steps {
+        publishHTML([
+            allowMissing: false,
+            alwaysLinkToLastBuild: true,
+            keepAll: true,
+            reportDir: 'test-output',
+            reportFiles: 'TestExecutionReport.html',
+            reportName: 'HTML Extent Report',
+            reportTitles: 'QA Automation Labs Test Execution'
+        ])
     }
+}
 
     post {
 
