@@ -2,15 +2,16 @@ pipeline {
 
     agent any
 
-   tools {
-    maven 'Maven-3.9.16'
-}
+    tools {
+        maven 'Maven-3.9.16'
+    }
 
     stages {
 
-        stage('Checkout') {
+        stage('Environment Check') {
             steps {
-                git 'https://github.com/aswinapr6385-maker/AutomationLab.git'
+                sh 'java -version'
+                sh 'mvn -version'
             }
         }
 
@@ -22,16 +23,14 @@ pipeline {
 
         stage('Install Playwright Browsers') {
             steps {
-                sh 'mvn exec:java -e -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install"'
+                sh 'mvn exec:java -e -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install chromium"'
             }
         }
 
         stage('Regression Automation Test') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-
                     sh 'mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunner/regression.xml'
-
                 }
             }
         }
@@ -39,7 +38,7 @@ pipeline {
         stage('Publish Extent Report') {
             steps {
                 publishHTML([
-                    allowMissing: false,
+                    allowMissing: true,
                     alwaysLinkToLastBuild: true,
                     keepAll: true,
                     reportDir: 'build',
