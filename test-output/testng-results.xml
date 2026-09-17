@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="8" passed="8" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-09-06T14:17:25 IST" name="QA Automation Labs Regression Suite" finished-at="2026-09-06T14:20:07 IST" duration-ms="162203">
+  <suite started-at="2026-09-18T00:05:31 IST" name="QA Automation Labs Regression Suite" finished-at="2026-09-18T00:07:52 IST" duration-ms="140869">
     <groups>
     </groups>
-    <test started-at="2026-09-06T14:17:25 IST" name="Login Tests" finished-at="2026-09-06T14:19:47 IST" duration-ms="142470">
+    <test started-at="2026-09-18T00:05:31 IST" name="Login Tests" finished-at="2026-09-18T00:07:33 IST" duration-ms="122157">
       <class name="com.qa.qaautomationlab.test.login_Test">
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@15de0b3c]" started-at="2026-09-06T14:17:25 IST" name="setup" finished-at="2026-09-06T14:17:59 IST" duration-ms="33796" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@2df3b89c]" started-at="2026-09-18T00:05:31 IST" name="setup" finished-at="2026-09-18T00:06:03 IST" duration-ms="31627" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="doinvalidlogin(java.lang.String,java.lang.String)[pri:0, instance:com.qa.qaautomationlab.test.login_Test@15de0b3c]" started-at="2026-09-06T14:17:59 IST" name="doinvalidlogin" data-provider="getinvalidcreds" finished-at="2026-09-06T14:18:02 IST" duration-ms="3731" status="PASS">
+        <test-method signature="doinvalidlogin(java.lang.String,java.lang.String)[pri:0, instance:com.qa.qaautomationlab.test.login_Test@2df3b89c]" started-at="2026-09-18T00:06:03 IST" name="doinvalidlogin" data-provider="getinvalidcreds" finished-at="2026-09-18T00:06:06 IST" duration-ms="2715" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -27,15 +27,15 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- doinvalidlogin -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@15de0b3c]" started-at="2026-09-06T14:18:03 IST" name="teardown" finished-at="2026-09-06T14:18:03 IST" duration-ms="402" status="PASS">
+        <test-method is-config="true" signature="teardown()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@2df3b89c]" started-at="2026-09-18T00:06:06 IST" name="teardown" finished-at="2026-09-18T00:06:06 IST" duration-ms="420" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@15de0b3c]" started-at="2026-09-06T14:18:03 IST" name="setup" finished-at="2026-09-06T14:18:16 IST" duration-ms="12898" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@2df3b89c]" started-at="2026-09-18T00:06:06 IST" name="setup" finished-at="2026-09-18T00:06:18 IST" duration-ms="11991" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="doinvalidlogin(java.lang.String,java.lang.String)[pri:0, instance:com.qa.qaautomationlab.test.login_Test@15de0b3c]" started-at="2026-09-06T14:18:16 IST" name="doinvalidlogin" data-provider="getinvalidcreds" finished-at="2026-09-06T14:18:20 IST" duration-ms="3792" status="PASS">
+        <test-method signature="doinvalidlogin(java.lang.String,java.lang.String)[pri:0, instance:com.qa.qaautomationlab.test.login_Test@2df3b89c]" started-at="2026-09-18T00:06:18 IST" name="doinvalidlogin" data-provider="getinvalidcreds" finished-at="2026-09-18T00:06:21 IST" duration-ms="2651" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -51,15 +51,15 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- doinvalidlogin -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@15de0b3c]" started-at="2026-09-06T14:18:20 IST" name="teardown" finished-at="2026-09-06T14:18:21 IST" duration-ms="420" status="PASS">
+        <test-method is-config="true" signature="teardown()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@2df3b89c]" started-at="2026-09-18T00:06:22 IST" name="teardown" finished-at="2026-09-18T00:06:22 IST" duration-ms="255" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@15de0b3c]" started-at="2026-09-06T14:18:21 IST" name="setup" finished-at="2026-09-06T14:18:34 IST" duration-ms="13642" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@2df3b89c]" started-at="2026-09-18T00:06:22 IST" name="setup" finished-at="2026-09-18T00:06:33 IST" duration-ms="11038" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="doinvalidlogin(java.lang.String,java.lang.String)[pri:0, instance:com.qa.qaautomationlab.test.login_Test@15de0b3c]" started-at="2026-09-06T14:18:34 IST" name="doinvalidlogin" data-provider="getinvalidcreds" finished-at="2026-09-06T14:18:38 IST" duration-ms="3239" status="PASS">
+        <test-method signature="doinvalidlogin(java.lang.String,java.lang.String)[pri:0, instance:com.qa.qaautomationlab.test.login_Test@2df3b89c]" started-at="2026-09-18T00:06:33 IST" name="doinvalidlogin" data-provider="getinvalidcreds" finished-at="2026-09-18T00:06:36 IST" duration-ms="3014" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -75,15 +75,15 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- doinvalidlogin -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@15de0b3c]" started-at="2026-09-06T14:18:38 IST" name="teardown" finished-at="2026-09-06T14:18:39 IST" duration-ms="500" status="PASS">
+        <test-method is-config="true" signature="teardown()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@2df3b89c]" started-at="2026-09-18T00:06:36 IST" name="teardown" finished-at="2026-09-18T00:06:37 IST" duration-ms="447" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@15de0b3c]" started-at="2026-09-06T14:18:39 IST" name="setup" finished-at="2026-09-06T14:18:53 IST" duration-ms="14089" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@2df3b89c]" started-at="2026-09-18T00:06:37 IST" name="setup" finished-at="2026-09-18T00:06:49 IST" duration-ms="12248" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="doinvalidlogin(java.lang.String,java.lang.String)[pri:0, instance:com.qa.qaautomationlab.test.login_Test@15de0b3c]" started-at="2026-09-06T14:18:53 IST" name="doinvalidlogin" data-provider="getinvalidcreds" finished-at="2026-09-06T14:18:57 IST" duration-ms="3941" status="PASS">
+        <test-method signature="doinvalidlogin(java.lang.String,java.lang.String)[pri:0, instance:com.qa.qaautomationlab.test.login_Test@2df3b89c]" started-at="2026-09-18T00:06:49 IST" name="doinvalidlogin" data-provider="getinvalidcreds" finished-at="2026-09-18T00:06:52 IST" duration-ms="2760" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -99,15 +99,15 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- doinvalidlogin -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@15de0b3c]" started-at="2026-09-06T14:18:57 IST" name="teardown" finished-at="2026-09-06T14:18:58 IST" duration-ms="520" status="PASS">
+        <test-method is-config="true" signature="teardown()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@2df3b89c]" started-at="2026-09-18T00:06:52 IST" name="teardown" finished-at="2026-09-18T00:06:53 IST" duration-ms="334" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@15de0b3c]" started-at="2026-09-06T14:18:58 IST" name="setup" finished-at="2026-09-06T14:19:12 IST" duration-ms="13480" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@2df3b89c]" started-at="2026-09-18T00:06:53 IST" name="setup" finished-at="2026-09-18T00:07:03 IST" duration-ms="10703" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="dolvalidlogin(java.lang.String,java.lang.String)[pri:0, instance:com.qa.qaautomationlab.test.login_Test@15de0b3c]" started-at="2026-09-06T14:19:12 IST" name="dolvalidlogin" data-provider="getvalidcreds" finished-at="2026-09-06T14:19:16 IST" duration-ms="4315" status="PASS">
+        <test-method signature="dolvalidlogin(java.lang.String,java.lang.String)[pri:0, instance:com.qa.qaautomationlab.test.login_Test@2df3b89c]" started-at="2026-09-18T00:07:03 IST" name="dolvalidlogin" data-provider="getvalidcreds" finished-at="2026-09-18T00:07:07 IST" duration-ms="3501" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -123,50 +123,68 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- dolvalidlogin -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@15de0b3c]" started-at="2026-09-06T14:19:17 IST" name="teardown" finished-at="2026-09-06T14:19:17 IST" duration-ms="412" status="PASS">
+        <test-method is-config="true" signature="teardown()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@2df3b89c]" started-at="2026-09-18T00:07:07 IST" name="teardown" finished-at="2026-09-18T00:07:08 IST" duration-ms="315" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@15de0b3c]" started-at="2026-09-06T14:19:17 IST" name="setup" finished-at="2026-09-06T14:19:31 IST" duration-ms="13791" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@2df3b89c]" started-at="2026-09-18T00:07:08 IST" name="setup" finished-at="2026-09-18T00:07:19 IST" duration-ms="11058" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="logintitle()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@15de0b3c]" started-at="2026-09-06T14:19:31 IST" name="logintitle" finished-at="2026-09-06T14:19:31 IST" duration-ms="43" status="PASS">
+        <test-method signature="logintitle()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@2df3b89c]" started-at="2026-09-18T00:07:19 IST" name="logintitle" finished-at="2026-09-18T00:07:19 IST" duration-ms="42" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- logintitle -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@15de0b3c]" started-at="2026-09-06T14:19:33 IST" name="teardown" finished-at="2026-09-06T14:19:33 IST" duration-ms="387" status="PASS">
+        <test-method is-config="true" signature="teardown()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@2df3b89c]" started-at="2026-09-18T00:07:20 IST" name="teardown" finished-at="2026-09-18T00:07:20 IST" duration-ms="309" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@15de0b3c]" started-at="2026-09-06T14:19:33 IST" name="setup" finished-at="2026-09-06T14:19:45 IST" duration-ms="12249" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@2df3b89c]" started-at="2026-09-18T00:07:20 IST" name="setup" finished-at="2026-09-18T00:07:32 IST" duration-ms="11076" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="loginurl()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@15de0b3c]" started-at="2026-09-06T14:19:45 IST" name="loginurl" finished-at="2026-09-06T14:19:45 IST" duration-ms="17" status="PASS">
+        <test-method signature="loginurl()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@2df3b89c]" started-at="2026-09-18T00:07:32 IST" name="loginurl" finished-at="2026-09-18T00:07:32 IST" duration-ms="8" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loginurl -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@15de0b3c]" started-at="2026-09-06T14:19:47 IST" name="teardown" finished-at="2026-09-06T14:19:47 IST" duration-ms="363" status="PASS">
+        <test-method is-config="true" signature="teardown()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@2df3b89c]" started-at="2026-09-18T00:07:33 IST" name="teardown" finished-at="2026-09-18T00:07:33 IST" duration-ms="314" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
       </class> <!-- com.qa.qaautomationlab.test.login_Test -->
     </test> <!-- Login Tests -->
-    <test started-at="2026-09-06T14:19:47 IST" name="Add To Cart Tests" finished-at="2026-09-06T14:20:07 IST" duration-ms="19526">
+    <test started-at="2026-09-18T00:07:33 IST" name="Add To Cart Tests" finished-at="2026-09-18T00:07:52 IST" duration-ms="18497">
+      <class name="com.qa.qaautomationlab.test.login_Test">
+        <test-method is-config="true" signature="setupSuite()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@2df3b89c]" started-at="2026-09-18T00:05:31 IST" name="setupSuite" finished-at="2026-09-18T00:05:31 IST" duration-ms="562" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupSuite -->
+        <test-method is-config="true" signature="tearDownSuite()[pri:0, instance:com.qa.qaautomationlab.test.login_Test@2df3b89c]" started-at="2026-09-18T00:07:52 IST" name="tearDownSuite" finished-at="2026-09-18T00:07:52 IST" duration-ms="269" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownSuite -->
+      </class> <!-- com.qa.qaautomationlab.test.login_Test -->
       <class name="com.qa.qaautomationlab.test.Addtocart_test">
-        <test-method is-config="true" signature="cart_setup()[pri:0, instance:com.qa.qaautomationlab.test.Addtocart_test@1ebd319f]" started-at="2026-09-06T14:19:47 IST" name="cart_setup" finished-at="2026-09-06T14:19:58 IST" duration-ms="10917" status="PASS">
+        <test-method is-config="true" signature="setupSuite()[pri:0, instance:com.qa.qaautomationlab.test.Addtocart_test@623a8092]" started-at="2026-09-18T00:05:31 IST" name="setupSuite" finished-at="2026-09-18T00:05:31 IST" duration-ms="7" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupSuite -->
+        <test-method is-config="true" signature="cart_setup()[pri:0, instance:com.qa.qaautomationlab.test.Addtocart_test@623a8092]" started-at="2026-09-18T00:07:33 IST" name="cart_setup" finished-at="2026-09-18T00:07:45 IST" duration-ms="11109" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- cart_setup -->
-        <test-method signature="addtocart()[pri:0, instance:com.qa.qaautomationlab.test.Addtocart_test@1ebd319f]" started-at="2026-09-06T14:19:58 IST" name="addtocart" finished-at="2026-09-06T14:20:06 IST" duration-ms="7610" status="PASS">
+        <test-method signature="addtocart()[pri:0, instance:com.qa.qaautomationlab.test.Addtocart_test@623a8092]" started-at="2026-09-18T00:07:45 IST" name="addtocart" finished-at="2026-09-18T00:07:51 IST" duration-ms="6440" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- addtocart -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:com.qa.qaautomationlab.test.Addtocart_test@1ebd319f]" started-at="2026-09-06T14:20:06 IST" name="teardown" finished-at="2026-09-06T14:20:07 IST" duration-ms="502" status="PASS">
+        <test-method is-config="true" signature="teardown()[pri:0, instance:com.qa.qaautomationlab.test.Addtocart_test@623a8092]" started-at="2026-09-18T00:07:51 IST" name="teardown" finished-at="2026-09-18T00:07:52 IST" duration-ms="557" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
+        <test-method is-config="true" signature="tearDownSuite()[pri:0, instance:com.qa.qaautomationlab.test.Addtocart_test@623a8092]" started-at="2026-09-18T00:07:52 IST" name="tearDownSuite" finished-at="2026-09-18T00:07:52 IST" duration-ms="8" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownSuite -->
       </class> <!-- com.qa.qaautomationlab.test.Addtocart_test -->
     </test> <!-- Add To Cart Tests -->
   </suite> <!-- QA Automation Labs Regression Suite -->

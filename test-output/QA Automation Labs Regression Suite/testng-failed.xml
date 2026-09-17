@@ -5,16 +5,17 @@
     <listener class-name="com.qa.qaautomationlabs.listners.ExtentReportListener"/>
     <listener class-name="com.qa.qaautomationlabs.listners.RetryListener"/>
   </listeners>
-  <test thread-count="5" name="Login Tests(failed)">
+  <test thread-count="5" name="Add To Cart Tests(failed)">
     <classes>
-      <class name="com.qa.qaautomationlab.test.login_Test">
+      <class name="com.qa.qaautomationlab.test.Addtocart_test">
         <methods>
-          <include name="logintitle"/>
-          <include name="loginurl"/>
+          <include name="setupSuite"/>
           <include name="teardown"/>
           <include name="setup"/>
+          <include name="addtocart"/>
+          <include name="tearDownSuite"/>
         </methods>
-      </class> <!-- com.qa.qaautomationlab.test.login_Test -->
+      </class> <!-- com.qa.qaautomationlab.test.Addtocart_test -->
     </classes>
-  </test> <!-- Login Tests(failed) -->
+  </test> <!-- Add To Cart Tests(failed) -->
 </suite> <!-- Failed suite [QA Automation Labs Regression Suite] -->

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self-Healing Test Automation Report</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --border: #334155;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #38bdf8;
+            --success: #22c55e;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        body { background-color: var(--bg); color: var(--text); padding: 2rem; line-height: 1.5; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header { margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-end; }
+        h1 { font-size: 2rem; color: #fff; font-weight: 700; }
+        .subtitle { color: var(--text-muted); font-size: 0.95rem; margin-top: 0.25rem; }
+        .badge-mode { background: #3b82f6; color: white; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 600; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+        .stat-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem; text-align: center; }
+        .stat-card .val { font-size: 2rem; font-weight: 700; margin-top: 0.25rem; }
+        .stat-card .lbl { color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .val-total { color: var(--primary); }
+        .val-warn { color: var(--warning); }
+        .val-success { color: var(--success); }
+        .val-danger { color: var(--danger); }
+        .filters { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
+        .filter-btn { background: var(--card-bg); border: 1px solid var(--border); color: var(--text); padding: 0.5rem 1rem; border-radius: 0.5rem; cursor: pointer; font-weight: 500; font-size: 0.9rem; }
+        .filter-btn.active, .filter-btn:hover { background: var(--primary); color: #0f172a; }
+        .record-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 0.75rem; padding: 1.5rem; margin-bottom: 1rem; transition: transform 0.1s; }
+        .record-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.75rem; }
+        .test-name { font-size: 1.1rem; font-weight: 600; color: #fff; }
+        .status-badge { padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
+        .status-passed { background: rgba(34, 197, 94, 0.2); color: var(--success); border: 1px solid var(--success); }
+        .status-failed { background: rgba(239, 68, 68, 0.2); color: var(--danger); border: 1px solid var(--danger); }
+        .diff-container { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; background: #0b1120; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0; font-family: monospace; font-size: 0.9rem; }
+        .diff-box h4 { font-size: 0.75rem; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: 0.05em; }
+        .diff-old { color: #f87171; background: rgba(239, 68, 68, 0.1); padding: 0.5rem; border-radius: 0.25rem; border-left: 3px solid var(--danger); }
+        .diff-new { color: #4ade80; background: rgba(34, 197, 94, 0.1); padding: 0.5rem; border-radius: 0.25rem; border-left: 3px solid var(--success); }
+        .record-meta { display: flex; flex-wrap: wrap; gap: 1.5rem; color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem; }
+        .meta-item strong { color: var(--text); }
+        .screenshot-link { color: var(--primary); text-decoration: none; display: inline-flex; align-items: center; gap: 0.25rem; }
+        .screenshot-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <div>
+            <h1>🛡️ Self-Healing Automation Dashboard</h1>
+            <div class="subtitle">Generated on 2026-09-18 00:07:52</div>
+        </div>
+        <div>
+            <span class="badge-mode">MODE: AUTO</span>
+        </div>
+    </header>
+    <div class="stats-grid">
+        <div class="stat-card"><div class="lbl">Tests Executed</div><div class="val val-total">1</div></div>
+        <div class="stat-card"><div class="lbl">Locator Failures</div><div class="val val-warn">15</div></div>
+        <div class="stat-card"><div class="lbl">Successfully Healed</div><div class="val val-success">15</div></div>
+        <div class="stat-card"><div class="lbl">Healing Failed</div><div class="val val-danger">0</div></div>
+        <div class="stat-card"><div class="lbl">Healing Rate</div><div class="val val-success">100.0%</div></div>
+    </div>
+    <div class="filters">
+        <button class="filter-btn active" onclick="filterRecords('all')">All Events (15)</button>
+        <button class="filter-btn" onclick="filterRecords('PASSED')">Healed (15)</button>
+        <button class="filter-btn" onclick="filterRecords('FAILED')">Failed (0)</button>
+    </div>
+    <div id="records-list">
+        <div class="record-card" data-status="PASSED">
+            <div class="record-header">
+                <div>
+                    <div class="test-name">org.testng.internal.invokers.TestInvoker.invokeMethod</div>
+                    <div style="color: var(--text-muted); font-size: 0.8rem;">Element: A Line Frock product link on page Addtocart_page</div>
+                </div>
+                <span class="status-badge status-passed">HEALED</span>
+            </div>
+            <div class="diff-container">
+                <div class="diff-box">
+                    <h4 style="color: #f87171;">Original Broken Locator</h4>
+                    <div class="diff-old">//a[normalize-space()=&#39;A Line Frock&#39;]</div>
+                </div>
+                <div class="diff-box">
+                    <h4 style="color: #4ade80;">Healed Replacement Locator</h4>
+                    <div class="diff-new">[data-testid=&#39;footer-brand-link&#39;]</div>
+                </div>
+            </div>
+            <div class="record-meta">
+                <div class="meta-item">Confidence: <strong>77.2%</strong></div>
+                <div class="meta-item">Mode: <strong>AUTO</strong></div>
+                <div class="meta-item">Duration: <strong>2898ms</strong></div>
+                <div class="meta-item">Reason: <strong>Strategy DATA_TESTID (base: 100) with semantic factor 0.62 (sim: 0.15) and consistency bonus +15</strong></div>
+                <div class="meta-item"><a class="screenshot-link" href="file:///Users/apple-harsh/eclipse-workspace/ecommerce/screenshots/healing_1789663011184.png" target="_blank">📸 View Screenshot</a></div>
+            </div>
+        </div>
+        <div class="record-card" data-status="PASSED">
+            <div class="record-header">
+                <div>
+                    <div class="test-name">org.testng.internal.invokers.TestInvoker.invokeMethod</div>
+                    <div style="color: var(--text-muted); font-size: 0.8rem;">Element: Add to Cart button on page Addtocart_page</div>
+                </div>
+                <span class="status-badge status-passed">HEALED</span>
+            </div>
+            <div class="diff-container">
+                <div class="diff-box">
+                    <h4 style="color: #f87171;">Original Broken Locator</h4>
+                    <div class="diff-old">//button[normalize-space()=&#39;Add to Cart&#39;]</div>
+                </div>
+                <div class="diff-box">
+                    <h4 style="color: #4ade80;">Healed Replacement Locator</h4>
+                    <div class="diff-new">[data-testid=&#39;qa-challenge-toggle&#39;]</div>
+                </div>
+            </div>
+            <div class="record-meta">
+                <div class="meta-item">Confidence: <strong>90.8%</strong></div>
+                <div class="meta-item">Mode: <strong>AUTO</strong></div>
+                <div class="meta-item">Duration: <strong>1229ms</strong></div>
+                <div class="meta-item">Reason: <strong>Strategy DATA_TESTID (base: 100) with semantic factor 0.61 (sim: 0.13) and consistency bonus +30</strong></div>
+                <div class="meta-item"><a class="screenshot-link" href="file:///Users/apple-harsh/eclipse-workspace/ecommerce/screenshots/healing_1789663045451.png" target="_blank">📸 View Screenshot</a></div>
+            </div>
+        </div>
+        <div class="record-card" data-status="PASSED">
+            <div class="record-header">
+                <div>
+                    <div class="test-name">org.testng.internal.invokers.TestInvoker.invokeMethod</div>
+                    <div style="color: var(--text-muted); font-size: 0.8rem;">Element: Shopping Cart icon/link on page Addtocart_page</div>
+                </div>
+                <span class="status-badge status-passed">HEALED</span>
+            </div>
+            <div class="diff-container">
+                <div class="diff-box">
+                    <h4 style="color: #f87171;">Original Broken Locator</h4>
+                    <div class="diff-old">//a[@id=&#39;cartdesk&#39;]//i[@class=&#39;fas fa-shopping-cart&#39;]</div>
+                </div>
+                <div class="diff-box">
+                    <h4 style="color: #4ade80;">Healed Replacement Locator</h4>
+                    <div class="diff-new">[data-testid=&#39;login-hero&#39;]</div>
+                </div>
+            </div>
+            <div class="record-meta">
+                <div class="meta-item">Confidence: <strong>89.0%</strong></div>
+                <div class="meta-item">Mode: <strong>AUTO</strong></div>
+                <div class="meta-item">Duration: <strong>1031ms</strong></div>
+                <div class="meta-item">Reason: <strong>Strategy DATA_TESTID (base: 100) with semantic factor 1.19 (sim: 0.86) and consistency bonus -30</strong></div>
+                <div class="meta-item"><a class="screenshot-link" href="file:///Users/apple-harsh/eclipse-workspace/ecommerce/screenshots/healing_1789663077106.png" target="_blank">📸 View Screenshot</a></div>
+            </div>
+        </div>
+        <div class="record-card" data-status="PASSED">
+            <div class="record-header">
+                <div>
+                    <div class="test-name">org.testng.internal.invokers.TestInvoker.invokeMethod</div>
+                    <div style="color: var(--text-muted); font-size: 0.8rem;">Element: Cart product name text on page Addtocart_page</div>
+                </div>
+                <span class="status-badge status-passed">HEALED</span>
+            </div>
+            <div class="diff-container">
+                <div class="diff-box">
+                    <h4 style="color: #f87171;">Original Broken Locator</h4>
+                    <div class="diff-old">text=A Line Frock</div>
+                </div>
+                <div class="diff-box">
+                    <h4 style="color: #4ade80;">Healed Replacement Locator</h4>
+                    <div class="diff-new">[data-testid=&#39;login-hero&#39;]</div>
+                </div>
+            </div>
+            <div class="record-meta">
+                <div class="meta-item">Confidence: <strong>99.0%</strong></div>
+                <div class="meta-item">Mode: <strong>AUTO</strong></div>
+                <div class="meta-item">Duration: <strong>882ms</strong></div>
+                <div class="meta-item">Reason: <strong>Strategy DATA_TESTID (base: 100) with semantic factor 1.19 (sim: 0.86) and consistency bonus +0</strong></div>
+                <div class="meta-item"><a class="screenshot-link" href="file:///Users/apple-harsh/eclipse-workspace/ecommerce/screenshots/healing_1789663108582.png" target="_blank">📸 View Screenshot</a></div>
+            </div>
+        </div>
+        <div class="record-card" data-status="PASSED">
+            <div class="record-header">
+                <div>
+                    <div class="test-name">org.testng.internal.invokers.TestInvoker.invokeMethod</div>
+                    <div style="color: var(--text-muted); font-size: 0.8rem;">Element: A Line Frock product link on page Addtocart_page</div>
+                </div>
+                <span class="status-badge status-passed">HEALED</span>
+            </div>
+            <div class="diff-container">
+                <div class="diff-box">
+                    <h4 style="color: #f87171;">Original Broken Locator</h4>
+                    <div class="diff-old">//a[normalize-space()=&#39;A Line Frock&#39;]</div>
+                </div>
+                <div class="diff-box">
+                    <h4 style="color: #4ade80;">Healed Replacement Locator</h4>
+                    <div class="diff-new">[data-testid=&#39;footer-brand-link&#39;]</div>
+                </div>
+            </div>
+            <div class="record-meta">
+                <div class="meta-item">Confidence: <strong>77.2%</strong></div>
+                <div class="meta-item">Mode: <strong>AUTO</strong></div>
+                <div class="meta-item">Duration: <strong>1406ms</strong></div>
+                <div class="meta-item">Reason: <strong>Strategy DATA_TESTID (base: 100) with semantic factor 0.62 (sim: 0.15) and consistency bonus +15</strong></div>
+                <div class="meta-item"><a class="screenshot-link" href="file:///Users/apple-harsh/eclipse-workspace/ecommerce/screenshots/healing_1789663154753.png" target="_blank">📸 View Screenshot</a></div>
+            </div>
+        </div>
+        <div class="record-card" data-status="PASSED">
+            <div class="record-header">
+                <div>
+                    <div class="test-name">org.testng.internal.invokers.TestInvoker.invokeMethod</div>
+                    <div style="color: var(--text-muted); font-size: 0.8rem;">Element: Add to Cart button on page Addtocart_page</div>
+                </div>
+                <span class="status-badge status-passed">HEALED</span>
+            </div>
+            <div class="diff-container">
+                <div class="diff-box">
+                    <h4 style="color: #f87171;">Original Broken Locator</h4>
+                    <div class="diff-old">//button[normalize-space()=&#39;Add to Cart&#39;]</div>
+                </div>
+                <div class="diff-box">
+                    <h4 style="color: #4ade80;">Healed Replacement Locator</h4>
+                    <div class="diff-new">[data-testid=&#39;qa-challenge-toggle&#39;]</div>
+                </div>
+            </div>
+            <div class="record-meta">
+                <div class="meta-item">Confidence: <strong>90.8%</strong></div>
+                <div class="meta-item">Mode: <strong>AUTO</strong></div>
+                <div class="meta-item">Duration: <strong>969ms</strong></div>
+                <div class="meta-item">Reason: <strong>Strategy DATA_TESTID (base: 100) with semantic factor 0.61 (sim: 0.13) and consistency bonus +30</strong></div>
+                <div class="meta-item"><a class="screenshot-link" href="file:///Users/apple-harsh/eclipse-workspace/ecommerce/screenshots/healing_1789663187513.png" target="_blank">📸 View Screenshot</a></div>
+            </div>
+        </div>
+        <div class="record-card" data-status="PASSED">
+            <div class="record-header">
+                <div>
+                    <div class="test-name">org.testng.internal.invokers.TestInvoker.invokeMethod</div>
+                    <div style="color: var(--text-muted); font-size: 0.8rem;">Element: Shopping Cart icon/link on page Addtocart_page</div>
+                </div>
+                <span class="status-badge status-passed">HEALED</span>
+            </div>
+            <div class="diff-container">
+                <div class="diff-box">
+                    <h4 style="color: #f87171;">Original Broken Locator</h4>
+                    <div class="diff-old">//a[@id=&#39;cartdesk&#39;]//i[@class=&#39;fas fa-shopping-cart&#39;]</div>
+                </div>
+                <div class="diff-box">
+                    <h4 style="color: #4ade80;">Healed Replacement Locator</h4>
+                    <div class="diff-new">[data-testid=&#39;login-hero&#39;]</div>
+                </div>
+            </div>
+            <div class="record-meta">
+                <div class="meta-item">Confidence: <strong>89.0%</strong></div>
+                <div class="meta-item">Mode: <strong>AUTO</strong></div>
+                <div class="meta-item">Duration: <strong>932ms</strong></div>
+                <div class="meta-item">Reason: <strong>Strategy DATA_TESTID (base: 100) with semantic factor 1.19 (sim: 0.86) and consistency bonus -30</strong></div>
+                <div class="meta-item"><a class="screenshot-link" href="file:///Users/apple-harsh/eclipse-workspace/ecommerce/screenshots/healing_1789663219008.png" target="_blank">📸 View Screenshot</a></div>
+            </div>
+        </div>
+        <div class="record-card" data-status="PASSED">
+            <div class="record-header">
+                <div>
+                    <div class="test-name">org.testng.internal.invokers.TestInvoker.invokeMethod</div>
+                    <div style="color: var(--text-muted); font-size: 0.8rem;">Element: Cart product name text on page Addtocart_page</div>
+                </div>
+                <span class="status-badge status-passed">HEALED</span>
+            </div>
+            <div class="diff-container">
+                <div class="diff-box">
+                    <h4 style="color: #f87171;">Original Broken Locator</h4>
+                    <div class="diff-old">text=A Line Frock</div>
+                </div>
+                <div class="diff-box">
+                    <h4 style="color: #4ade80;">Healed Replacement Locator</h4>
+                    <div class="diff-new">[data-testid=&#39;login-hero&#39;]</div>
+                </div>
+            </div>
+            <div class="record-meta">
+                <div class="meta-item">Confidence: <strong>99.0%</strong></div>
+                <div class="meta-item">Mode: <strong>AUTO</strong></div>
+                <div class="meta-item">Duration: <strong>1016ms</strong></div>
+                <div class="meta-item">Reason: <strong>Strategy DATA_TESTID (base: 100) with semantic factor 1.19 (sim: 0.86) and consistency bonus +0</strong></div>
+                <div class="meta-item"><a class="screenshot-link" href="file:///Users/apple-harsh/eclipse-workspace/ecommerce/screenshots/healing_1789663250567.png" target="_blank">📸 View Screenshot</a></div>
+            </div>
+        </div>
+        <div class="record-card" data-status="PASSED">
+            <div class="record-header">
+                <div>
+                    <div class="test-name">org.testng.internal.invokers.TestInvoker.invokeMethod</div>
+                    <div style="color: var(--text-muted); font-size: 0.8rem;">Element: A Line Frock product link on page Addtocart_page</div>
+                </div>
+                <span class="status-badge status-passed">HEALED</span>
+            </div>
+            <div class="diff-container">
+                <div class="diff-box">
+                    <h4 style="color: #f87171;">Original Broken Locator</h4>
+                    <div class="diff-old">//a[normalize-space()=&#39;A Line Frock&#39;]</div>
+                </div>
+                <div class="diff-box">
+                    <h4 style="color: #4ade80;">Healed Replacement Locator</h4>
+                    <div class="diff-new">[data-testid=&#39;footer-brand-link&#39;]</div>
+                </div>
+            </div>
+            <div class="record-meta">
+                <div class="meta-item">Confidence: <strong>77.2%</strong></div>
+                <div class="meta-item">Mode: <strong>AUTO</strong></div>
+                <div class="meta-item">Duration: <strong>1337ms</strong></div>
+                <div class="meta-item">Reason: <strong>Strategy DATA_TESTID (base: 100) with semantic factor 0.62 (sim: 0.15) and consistency bonus +15</strong></div>
+                <div class="meta-item"><a class="screenshot-link" href="file:///Users/apple-harsh/eclipse-workspace/ecommerce/screenshots/healing_1789663297933.png" target="_blank">📸 View Screenshot</a></div>
+            </div>
+        </div>
+        <div class="record-card" data-status="PASSED">
+            <div class="record-header">
+                <div>
+                    <div class="test-name">org.testng.internal.invokers.TestInvoker.invokeMethod</div>
+                    <div style="color: var(--text-muted); font-size: 0.8rem;">Element: Add to Cart button on page Addtocart_page</div>
+                </div>
+                <span class="status-badge status-passed">HEALED</span>
+            </div>
+            <div class="diff-container">
+                <div class="diff-box">
+                    <h4 style="color: #f87171;">Original Broken Locator</h4>
+                    <div class="diff-old">//button[normalize-space()=&#39;Add to Cart&#39;]</div>
+                </div>
+                <div class="diff-box">
+                    <h4 style="color: #4ade80;">Healed Replacement Locator</h4>
+                    <div class="diff-new">[data-testid=&#39;qa-challenge-toggle&#39;]</div>
+                </div>
+            </div>
+            <div class="record-meta">
+                <div class="meta-item">Confidence: <strong>90.8%</strong></div>
+                <div class="meta-item">Mode: <strong>AUTO</strong></div>
+                <div class="meta-item">Duration: <strong>763ms</strong></div>
+                <div class="meta-item">Reason: <strong>Strategy DATA_TESTID (base: 100) with semantic factor 0.61 (sim: 0.13) and consistency bonus +30</strong></div>
+                <div class="meta-item"><a class="screenshot-link" href="file:///Users/apple-harsh/eclipse-workspace/ecommerce/screenshots/healing_1789663330545.png" target="_blank">📸 View Screenshot</a></div>
+            </div>
+        </div>
+        <div class="record-card" data-status="PASSED">
+            <div class="record-header">
+                <div>
+                    <div class="test-name">org.testng.internal.invokers.TestInvoker.invokeMethod</div>
+                    <div style="color: var(--text-muted); font-size: 0.8rem;">Element: Shopping Cart icon/link on page Addtocart_page</div>
+                </div>
+                <span class="status-badge status-passed">HEALED</span>
+            </div>
+            <div class="diff-container">
+                <div class="diff-box">
+                    <h4 style="color: #f87171;">Original Broken Locator</h4>
+                    <div class="diff-old">//a[@id=&#39;cartdesk&#39;]//i[@class=&#39;fas fa-shopping-cart&#39;]</div>
+                </div>
+                <div class="diff-box">
+                    <h4 style="color: #4ade80;">Healed Replacement Locator</h4>
+                    <div class="diff-new">[data-testid=&#39;login-hero&#39;]</div>
+                </div>
+            </div>
+            <div class="record-meta">
+                <div class="meta-item">Confidence: <strong>89.0%</strong></div>
+                <div class="meta-item">Mode: <strong>AUTO</strong></div>
+                <div class="meta-item">Duration: <strong>788ms</strong></div>
+                <div class="meta-item">Reason: <strong>Strategy DATA_TESTID (base: 100) with semantic factor 1.19 (sim: 0.86) and consistency bonus -30</strong></div>
+                <div class="meta-item"><a class="screenshot-link" href="file:///Users/apple-harsh/eclipse-workspace/ecommerce/screenshots/healing_1789663361652.png" target="_blank">📸 View Screenshot</a></div>
+            </div>
+        </div>
+        <div class="record-card" data-status="PASSED">
+            <div class="record-header">
+                <div>
+                    <div class="test-name">org.testng.internal.invokers.TestInvoker.invokeMethod</div>
+                    <div style="color: var(--text-muted); font-size: 0.8rem;">Element: Cart product name text on page Addtocart_page</div>
+                </div>
+                <span class="status-badge status-passed">HEALED</span>
+            </div>
+            <div class="diff-container">
+                <div class="diff-box">
+                    <h4 style="color: #f87171;">Original Broken Locator</h4>
+                    <div class="diff-old">text=A Line Frock</div>
+                </div>
+                <div class="diff-box">
+                    <h4 style="color: #4ade80;">Healed Replacement Locator</h4>
+                    <div class="diff-new">[data-testid=&#39;login-hero&#39;]</div>
+                </div>
+            </div>
+            <div class="record-meta">
+                <div class="meta-item">Confidence: <strong>99.0%</strong></div>
+                <div class="meta-item">Mode: <strong>AUTO</strong></div>
+                <div class="meta-item">Duration: <strong>757ms</strong></div>
+                <div class="meta-item">Reason: <strong>Strategy DATA_TESTID (base: 100) with semantic factor 1.19 (sim: 0.86) and consistency bonus +0</strong></div>
+                <div class="meta-item"><a class="screenshot-link" href="file:///Users/apple-harsh/eclipse-workspace/ecommerce/screenshots/healing_1789663392840.png" target="_blank">📸 View Screenshot</a></div>
+            </div>
+        </div>
+        <div class="record-card" data-status="PASSED">
+            <div class="record-header">
+                <div>
+                    <div class="test-name">org.testng.internal.invokers.TestInvoker.invokeMethod</div>
+                    <div style="color: var(--text-muted); font-size: 0.8rem;">Element: Cart product name text on page Addtocart_page</div>
+                </div>
+                <span class="status-badge status-passed">HEALED</span>
+            </div>
+            <div class="diff-container">
+                <div class="diff-box">
+                    <h4 style="color: #f87171;">Original Broken Locator</h4>
+                    <div class="diff-old">text=A Line Frock</div>
+                </div>
+                <div class="diff-box">
+                    <h4 style="color: #4ade80;">Healed Replacement Locator</h4>
+                    <div class="diff-new">[data-testid=&#39;login-hero&#39;]</div>
+                </div>
+            </div>
+            <div class="record-meta">
+                <div class="meta-item">Confidence: <strong>99.0%</strong></div>
+                <div class="meta-item">Mode: <strong>AUTO</strong></div>
+                <div class="meta-item">Duration: <strong>3434ms</strong></div>
+                <div class="meta-item">Reason: <strong>Strategy DATA_TESTID (base: 100) with semantic factor 1.19 (sim: 0.86) and consistency bonus +0</strong></div>
+                <div class="meta-item"><a class="screenshot-link" href="file:///Users/apple-harsh/eclipse-workspace/ecommerce/screenshots/healing_1789667250454.png" target="_blank">📸 View Screenshot</a></div>
+            </div>
+        </div>
+        <div class="record-card" data-status="PASSED">
+            <div class="record-header">
+                <div>
+                    <div class="test-name">org.testng.internal.invokers.TestInvoker.invokeMethod</div>
+                    <div style="color: var(--text-muted); font-size: 0.8rem;">Element: Cart product name text on page Addtocart_page</div>
+                </div>
+                <span class="status-badge status-passed">HEALED</span>
+            </div>
+            <div class="diff-container">
+                <div class="diff-box">
+                    <h4 style="color: #f87171;">Original Broken Locator</h4>
+                    <div class="diff-old">text=A Line Frock</div>
+                </div>
+                <div class="diff-box">
+                    <h4 style="color: #4ade80;">Healed Replacement Locator</h4>
+                    <div class="diff-new">[data-testid=&#39;login-hero&#39;]</div>
+                </div>
+            </div>
+            <div class="record-meta">
+                <div class="meta-item">Confidence: <strong>99.0%</strong></div>
+                <div class="meta-item">Mode: <strong>AUTO</strong></div>
+                <div class="meta-item">Duration: <strong>32308ms</strong></div>
+                <div class="meta-item">Reason: <strong>Strategy DATA_TESTID (base: 100) with semantic factor 1.19 (sim: 0.86) and consistency bonus +0</strong></div>
+                <div class="meta-item"><a class="screenshot-link" href="file:///Users/apple-harsh/eclipse-workspace/ecommerce/screenshots/healing_1789667301963.png" target="_blank">📸 View Screenshot</a></div>
+            </div>
+        </div>
+        <div class="record-card" data-status="PASSED">
+            <div class="record-header">
+                <div>
+                    <div class="test-name">org.testng.internal.invokers.TestInvoker.invokeMethod</div>
+                    <div style="color: var(--text-muted); font-size: 0.8rem;">Element: Cart product name text on page Addtocart_page</div>
+                </div>
+                <span class="status-badge status-passed">HEALED</span>
+            </div>
+            <div class="diff-container">
+                <div class="diff-box">
+                    <h4 style="color: #f87171;">Original Broken Locator</h4>
+                    <div class="diff-old">text=A Line Frock</div>
+                </div>
+                <div class="diff-box">
+                    <h4 style="color: #4ade80;">Healed Replacement Locator</h4>
+                    <div class="diff-new">[data-testid=&#39;header-cart-link&#39;]</div>
+                </div>
+            </div>
+            <div class="record-meta">
+                <div class="meta-item">Confidence: <strong>99.0%</strong></div>
+                <div class="meta-item">Mode: <strong>AUTO</strong></div>
+                <div class="meta-item">Duration: <strong>1414ms</strong></div>
+                <div class="meta-item">Reason: <strong>Strategy DATA_TESTID (base: 100) with semantic factor 1.20 (sim: 0.87) and consistency bonus +0</strong></div>
+                <div class="meta-item"><a class="screenshot-link" href="file:///Users/apple-harsh/eclipse-workspace/ecommerce/screenshots/healing_1789667382285.png" target="_blank">📸 View Screenshot</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function filterRecords(status) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        event.target.classList.add('active');
+        document.querySelectorAll('.record-card').forEach(card => {
+            if (status === 'all' || card.getAttribute('data-status') === status) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+</script>
+</body>
+</html>
